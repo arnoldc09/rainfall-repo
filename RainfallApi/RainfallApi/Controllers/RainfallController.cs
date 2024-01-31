@@ -29,10 +29,10 @@ namespace RainfallApi.Controllers
         {
             try
             {
-                if (stationId == null) return BadRequest();
+                if (stationId == null) return BadRequest("Invalid Request");
 
                 var res = await GetRainfallDataFromApi(stationId);
-                if (res == null) return NotFound();
+                if (res == null) return NotFound("No readings found for the specified stationId");
 
                 var contractList = _mapper.Map<RainfallContract>(res);
                 return Ok(contractList);

@@ -9,7 +9,21 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "Rainfall Api",
+        Version = "1.0",
+        Contact = new OpenApiContact
+        {
+            Name = "Sorted",
+            Url = new Uri("https://www.sorted.com")
+        },
+        Description = "An API which provides rainfall reading data"
+    });
+});
+
 builder.Services.AddHttpClient();
 builder.Services.AddRainfallServices();
 
